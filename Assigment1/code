@@ -1,0 +1,21 @@
+SparseMatrix* SparseMatrix::add(const SparseMatrix& b) {
+	if (nrow != b.nrow || ncol != b.ncol)
+		throw "MismatchedDimensions";
+
+
+	SparseMatrix* result = NULL;
+	// YOUR CODE HERE
+	result = new SparseMatrix(nrow, ncol);
+	double sum = 0;
+	SparseMatrix temp = b;
+
+	for (int i = 0; i < nrow; i++){
+		for (int j = 0; j < ncol; j++){
+			sum = this->getAt(i, j) + temp.getAt(i,j);
+			if (sum != 0) {
+				result->setAt(i, j, sum);
+			}
+		}
+	}
+	return result;
+}
